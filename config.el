@@ -21,8 +21,8 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-(setq doom-font (font-spec :family "Iosevka Term" :size 15 :weight 'medium)
-     doom-variable-pitch-font (font-spec :family "Futura" :size 15))
+(setq doom-font (font-spec :family "Iosevka Term" :size 14 :weight 'medium)
+     doom-variable-pitch-font (font-spec :family "Iosevka Comfy Motion Duo" :size 13 :weight 'Regular))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -36,7 +36,7 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type `relative)
+(setq display-line-numbers-type `t)
 
 ;; some new defaults
 (setq undo-limit 80000000)    ;;raise undo limit
@@ -84,19 +84,19 @@
 (setq browse-url-browser-function 'eww-browse-url)
 
 ;; Org elfeed
-(setq rmh-elfeed-org-files '("~/org/elfeed 2.org"))
+(setq rmh-elfeed-org-files '("~/org/elfeed.org"))
 ;; elfeed update when search doom starts
 (add-hook! 'elfeed-search-mode-hook #'elfeed-update)
 (use-package! elfeed-goodies)
 (elfeed-goodies/setup)
 (setq elfeed-goodies/entry-pane-size 0.9)
 (add-hook! 'elfeed-show-mode-hook 'visual-line-mode)
-(evil-define-key 'normal elfeed-show-mode-map
-  (kbd "J") 'elfeed-goodies/split-show-next
-  (kbd "K") 'elfeed-goodies/split-show-prev)
-(evil-define-key 'normal elfeed-search-mode-map
-  (kbd "J") 'elfeed-goodies/split-show-next
-  (kbd "K") 'elfeed-goodies/split-show-prev)
+;; (evil-define-key 'normal elfeed-show-mode-map
+;;   (kbd "J") 'elfeed-goodies/split-show-next
+;;   (kbd "K") 'elfeed-goodies/split-show-prev)
+;; (evil-define-key 'normal elfeed-search-mode-map
+;;   (kbd "J") 'elfeed-goodies/split-show-next
+;;   (kbd "K") 'elfeed-goodies/split-show-prev)
 
 
 ;;keybinding defination for org-pomodoro in all buffers
@@ -166,3 +166,7 @@
 (after! org
   (setq org-agenda-skip-deadline-if-done t
         org-agenda-skip-scheduled-if-done t))
+
+;; specific keybindings
+(map! "C-c C-w" #'osx-dictionary-search-input
+      "C-c C-p" #'osx-dictionary-search-word-at-point)

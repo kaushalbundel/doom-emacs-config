@@ -56,3 +56,4 @@
 (package! org-pomodoro)
 (package! ido-completing-read+)
 (package! olivetti )
+(package! denote)
