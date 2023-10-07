@@ -111,6 +111,8 @@
 (setq org-directory "~/OneDrive/09-Notes/04-org-notes")
 (setq org-agenda-files '("~/OneDrive/01-Vision-Plan/02-Plan/01-todo"
                          "~/OneDrive/01-Vision-Plan/02-Plan/02-habit"))
+
+;; Custom agenda commands to display goals in the agenda buffer
 (setq org-agenda-custom-commands
 '(("d" "Today's Tasks"
 	((tags-todo
