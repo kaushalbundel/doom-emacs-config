@@ -54,3 +54,4 @@
 (package! elfeed-tube-mpv)
 (package! mpv)
 (package! ox-hugo)
+(package! modus-themes)
