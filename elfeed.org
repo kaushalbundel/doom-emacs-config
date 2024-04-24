@@ -51,6 +51,10 @@
 ** Coding
 *** https://drewdevault.com/blog/index.xml
 *** https://tratt.net/laurie/news.rss
+*** https://daniel.feldroy.com/feeds/atom.xml
+*** https://lucumr.pocoo.org/feed.atom
+*** https://planetpython.org/rss20.xml
+*** https://www.mostlypython.com/rss/
 ** Youtube                                 :youtube:
 *** https://www.youtube.com/feeds/videos.xml?channel_id=UC5LueiosDVInA6yXE_38i9Q
 *** https://www.youtube.com/feeds/videos.xml?channel_id=UCuV0yG992ILG-wNBSKTEwhQ
