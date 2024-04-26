@@ -7,7 +7,7 @@
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
 (setq user-full-name "Kaushal Bundel"
-      user-mail-address "kaushalbundel@.com")
+      user-mail-address "kaushalbundel@x.com")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom:
 ;;
@@ -21,8 +21,9 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-(setq doom-font (font-spec :family "Iosevka Comfy Motion Fixed" :size 13 :weight 'semi-light)
-      doom-variable-pitch-font (font-spec :family "Iosevka Term SS05" :size 13))
+
+(setq doom-font (font-spec :family "Iosevka Term SS05" :size 14 :weight 'Regular)
+      doom-variable-pitch-font (font-spec :family "Iosevka Term SS05" :size 13 :weight 'Regular))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -82,10 +83,10 @@
 (setq menu-bar-mode -1)
 
 ;; mac specific controls
-(cond (IS-MAC
-       (setq mac-option-modifier        'meta
-             mac-right-option-modifier  'meta
-             mac-command-modifier       'control)))
+                                        ;(cond (IS-MAC
+                                        ;       (setq mac-option-modifier        'meta
+                                        ;             mac-right-option-modifier  'meta
+                                        ;             mac-command-modifier       'control)))
 
 ;;Turning off the Tool bar
 (add-hook 'doom-after-init-hook (lambda () (tool-bar-mode 1) (tool-bar-mode 0)))
