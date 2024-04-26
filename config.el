@@ -82,17 +82,19 @@
 (setq scroll-margin 2)        ;;maintaining a little margin while scrolling
 (setq menu-bar-mode -1)
 
-;; mac specific controls
-                                        ;(cond (IS-MAC
-                                        ;       (setq mac-option-modifier        'meta
-                                        ;             mac-right-option-modifier  'meta
-                                        ;             mac-command-modifier       'control)))
 
 ;;Turning off the Tool bar
 (add-hook 'doom-after-init-hook (lambda () (tool-bar-mode 1) (tool-bar-mode 0)))
 
 ;; Deleted files to Trash
 (setq delete-by-moving-to-trash t)
+
+
+;;mac-specific settings
+(cond (IS-MAC
+       (setq mac-option-modifier        'meta
+             mac-right-option-modifier  'meta
+             mac-command-modifier       'control)))
 
 (setq company-global-modes '(not org-mode))
 
