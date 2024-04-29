@@ -173,6 +173,9 @@
                  :kill-buffer t
                  :jump-to-captured t)))
 
+;;setting denote daily journal
+(require 'denote-journal-extras)
+(setq denote-journal-extras-title-format 'day-date-month-year)
 
 
 ;; capture keybindings
