@@ -21,6 +21,8 @@
 *** https://www.ribbonfarm.com/feed/
 *** https://srajagopalan.substack.com/feed/
 *** https://feedpress.me/thetechnium
+*** https://www.lesswrong.com/feed.xml?view=curated-rss
+*** https://world.hey.com/dhh/feed.atom
 ** Tech :Tech:
 *** https://nadh.in/index.xml
 *** https://api.quantamagazine.org/feed/
