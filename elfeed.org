@@ -36,7 +36,6 @@
 ** Emacs-life :EMACS:
 *** https://protesilaos.com/master.xml
 *** https://systemcrafters.net/rss/news.xml
-*** https://planet.emacslife.com/atom.xml
 *** https://cestlaz.github.io/rss.xml
 ** India :India:Starup:
 *** https://theindianpivot.substack.com/feed
