@@ -23,6 +23,7 @@
 *** https://feedpress.me/thetechnium
 *** https://www.lesswrong.com/feed.xml?view=curated-rss
 *** https://world.hey.com/dhh/feed.atom
+*** https://sceneswithsimon.com/feed
 ** Tech :Tech:
 *** https://nadh.in/index.xml
 *** https://api.quantamagazine.org/feed/
