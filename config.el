@@ -235,3 +235,12 @@
       :desc "dap breakpoint condition"   "c" #'dap-breakpoint-condition
       :desc "dap breakpoint hit count"   "h" #'dap-breakpoint-hit-condition
       :desc "dap breakpoint log message" "l" #'dap-breakpoint-log-message)
+
+
+;;avy-configuration
+;;avy is a package that is used to easily navigate the buffer
+
+(map! "C-c g l" #'avy-goto-line
+      "C-c g w" #'avy-goto-word-0)
+
+(map! "C-c b" #'consult-buffer)
