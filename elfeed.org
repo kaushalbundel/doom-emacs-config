@@ -24,6 +24,10 @@
 *** https://www.lesswrong.com/feed.xml?view=curated-rss
 *** https://world.hey.com/dhh/feed.atom
 *** https://sceneswithsimon.com/feed
+*** https://www.overcomingbias.com/feed
+*** https://thelivingfossils.substack.com/feed
+*** https://www.everythingisbullshit.blog/feed
+*** https://www.robkhenderson.com/feed
 ** Tech :Tech:
 *** https://nadh.in/index.xml
 *** https://api.quantamagazine.org/feed/
