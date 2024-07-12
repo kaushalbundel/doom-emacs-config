@@ -110,12 +110,12 @@
 (elfeed-goodies/setup)
 (setq elfeed-goodies/entry-pane-size 0.9)
 (add-hook! 'elfeed-show-mode-hook 'visual-line-mode)
-;; (evil-define-key 'normal elfeed-show-mode-map
-;;   (kbd "J") 'elfeed-goodies/split-show-next
-;;   (kbd "K") 'elfeed-goodies/split-show-prev)
-;; (evil-define-key 'normal elfeed-search-mode-map
-;;   (kbd "J") 'elfeed-goodies/split-show-next
-;;   (kbd "K") 'elfeed-goodies/split-show-prev)
+(evil-define-key 'normal elfeed-show-mode-map
+  (kbd "J") 'elfeed-goodies/split-show-next
+  (kbd "K") 'elfeed-goodies/split-show-prev)
+(evil-define-key 'normal elfeed-search-mode-map
+  (kbd "J") 'elfeed-goodies/split-show-next
+  (kbd "K") 'elfeed-goodies/split-show-prev)
 
 ;; elfeed-youtube setup
 (use-package! elfeed-tube
@@ -240,8 +240,7 @@
 ;;avy-configuration
 ;;avy is a package that is used to easily navigate the buffer
 (map! "C-c g l" #'avy-goto-line
-      "C-c g w" #'avy-goto-word-0
-      "M-j" #'avy-goto-char-timer)
+      "C-c g w" #'avy-goto-word-0)
 
 ;; function  to kill whole line or just a word
 ;; usage is just select the k or K to kill the whole line and press the selection word
@@ -285,3 +284,31 @@
 
 ;;consult
 (map! "C-c b" #'consult-buffer)
+
+;;obsidian (TODO: Change keybinding)
+(use-package! obsidian
+  :ensure t
+  :demand t
+  :config
+  (obsidian-specify-path "~/Insync/kaushalbundel@outlook.com/OneDrive/09-Notes/Notes/")
+  (global-obsidian-mode t)
+  :custom
+  ;; This directory will be used for `obsidian-capture' if set.
+  (obsidian-inbox-directory "~/Insync/kaushalbundel@outlook.com/OneDrive/09-Notes/Notes/")
+  ;; Create missing files in inbox? - when clicking on a wiki link
+  ;; t: in inbox, nil: next to the file with the link
+  ;; default: t
+                                        ;(obsidian-wiki-link-create-file-in-inbox nil)
+  ;; The directory for daily notes (file name is YYYY-MM-DD.md)
+  (obsidian-daily-notes-directory "Daily Notes")
+  ;; Directory of note templates, unset (nil) by default
+  (obsidian-templates-directory "Templates")
+  ;; Daily Note template name - requires a template directory. Default: Daily Note Template.md
+                                        ;(obsidian-daily-note-template "Daily Note Template.md")
+  :bind (:map obsidian-mode-map
+              ;; Replace C-c C-o with Obsidian.el's implementation. It's ok to use another key binding.
+              ("C-c C-o" . obsidian-follow-link-at-point)
+              ;; Jump to backlinks
+              ("C-c C-b" . obsidian-backlink-jump)
+              ;; If you prefer you can use `obsidian-insert-link'
+              ("C-c C-l" . obsidian-insert-wikilink)))
