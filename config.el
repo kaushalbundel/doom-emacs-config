@@ -79,6 +79,7 @@
 ;; some new defaults
 (setq undo-limit 80000000)    ;;raise undo limit
 (setq evil-want-fine-undo t)  ;;more granular undo
+(setq evil-move-cursor-back nil) ;; problem: when M+enter is pressed the last character gets pushed to the last line
 (setq scroll-margin 2)        ;;maintaining a little margin while scrolling
 (setq menu-bar-mode -1)
 
@@ -283,7 +284,7 @@
 
 
 ;;consult
-(map! "C-c b" #'consult-buffer)
+(map! :leader "b a" #'consult-buffer)
 
 ;;obsidian (TODO: Change keybinding)
 (use-package! obsidian
