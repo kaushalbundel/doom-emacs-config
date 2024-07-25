@@ -47,6 +47,8 @@
 *** https://shorts.growthx.club/feed
 *** https://tigerfeathers.substack.com/feed
 *** https://www.dataforindia.com/feed
+** Design :product:design
+*** https://matthewstrom.com/feed.xml
 ** Science :science:
 *** https://writings.stephenwolfram.com/feed/
 ** Startup :World:

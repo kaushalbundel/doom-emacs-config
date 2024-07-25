@@ -22,8 +22,8 @@
 ;; accept. For example:
 ;;
 
-(setq doom-font (font-spec :family "Iosevka Term SS05" :size 14 :weight 'Regular)
-      doom-variable-pitch-font (font-spec :family "Iosevka Term SS05" :size 13 :weight 'Regular))
+(setq doom-font (font-spec :family "Iosevka Comfy Motion Fixed" :size 14 :weight 'Regular)
+      doom-variable-pitch-font (font-spec :family "Iosevka Comfy Motion Fixed" :size 13 :weight 'Regular))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -314,4 +314,5 @@
               ;; If you prefer you can use `obsidian-insert-link'
               ("C-c C-l" . obsidian-insert-wikilink)))
 
-;; setting org-roam
+;; Writeroom  mode keybinding
+(map! "<f12>" #'writeroom-mode)
