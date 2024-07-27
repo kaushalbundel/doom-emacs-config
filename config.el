@@ -178,6 +178,8 @@
 (require 'denote-journal-extras)
 (setq denote-journal-extras-title-format 'day-date-month-year)
 
+;; Denote specific keybindings
+(map! :leader "n D" #'denote-link-or-create)  ;; Create denote buffer if not already created
 
 ;; capture keybindings
 (map! "C-c C-w" #'osx-dictionary-search-input
