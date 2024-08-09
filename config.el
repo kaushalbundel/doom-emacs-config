@@ -149,7 +149,8 @@
 (setq org-directory "~/Insync/kaushalbundel@outlook.com/OneDrive/09-Notes")
 (setq org-agenda-files '("~/Insync/kaushalbundel@outlook.com/OneDrive/01-Vision-Plan/02-Plan/02-habit"
                          "~/Insync/kaushalbundel@outlook.com/OneDrive/09-Notes"
-                         "~/Insync/kaushalbundel@outlook.com/OneDrive/07-Programming"))
+                         "~/Insync/kaushalbundel@outlook.com/OneDrive/07-Programming"
+                         "~/Insync/kaushalbundel@outlook.com/OneDrive/09-Notes/journal"))
 
 (after! org
   (setq org-todo-keywords '((sequence "BACKLOG" "TODO(t!)" "IN-PROGRESS(p!)" "WAITING(w@)" "|" "Rescheduled" "DONE(d!)" "DROPPED(r@)")))
