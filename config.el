@@ -117,6 +117,8 @@
 (evil-define-key 'normal elfeed-search-mode-map
   (kbd "J") 'elfeed-goodies/split-show-next
   (kbd "K") 'elfeed-goodies/split-show-prev)
+;; yank elfeed url to clipboard
+(map! :leader "e y" #'elfeed-show-yank)
 
 ;; elfeed-youtube setup
 (use-package! elfeed-tube
@@ -319,3 +321,7 @@
 
 ;; Writeroom  mode keybinding
 (map! "<f12>" #'writeroom-mode)
+
+;; lsp shortcuts
+(map! :leader "c g" #'lsp-goto-type-definition) ;; get the documentation
+(map! :leader "c p" #'lsp-describe-thing-at-point) ;;get the entire class defintion in a popup buffer
