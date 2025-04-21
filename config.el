@@ -22,7 +22,7 @@
 ;; accept. For example:
 ;;
 
-(setq doom-font (font-spec :family "Iosevka Comfy Motion Fixed" :size 14 :weight 'Regular)
+(setq doom-font (font-spec :family "Iosevka Comfy Motion Fixed" :size 13 :weight 'Regular)
       doom-variable-pitch-font (font-spec :family "Iosevka Comfy Motion Fixed" :size 13 :weight 'Regular))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
@@ -104,22 +104,24 @@
 (setq browse-url-browser-function 'eww-browse-url)
 
 ;; Org elfeed
-(setq rmh-elfeed-org-files '("~/.doom.d/elfeed.org"))
+(setq rmh-elfeed-org-files '("~/.config/doom/elfeed.org"))
 ;; elfeed update when search doom starts
 (add-hook! 'elfeed-search-mode-hook #'elfeed-update)
-(use-package! elfeed-goodies)
-(elfeed-goodies/setup)
-(setq elfeed-goodies/entry-pane-size 0.9)
-(add-hook! 'elfeed-show-mode-hook 'visual-line-mode)
-(evil-define-key 'normal elfeed-show-mode-map
-  (kbd "J") 'elfeed-goodies/split-show-next
-  (kbd "K") 'elfeed-goodies/split-show-prev)
-(evil-define-key 'normal elfeed-search-mode-map
-  (kbd "J") 'elfeed-goodies/split-show-next
-  (kbd "K") 'elfeed-goodies/split-show-prev)
-;; yank elfeed url to clipboard
-(map! :leader "e y" #'elfeed-show-yank)
-
+(use-package! elfeed-goodies
+  :config
+  (elfeed-goodies/setup)
+  (setq elfeed-goodies/entry-pane-size 0.9))
+;; changing feed using evil keybindings
+(with-eval-after-load 'evil
+  (evil-define-key 'normal elfeed-show-mode-map
+    (kbd "J") 'elfeed-goodies/split-show-next
+    (kbd "K") 'elfeed-goodies/split-show-prev)
+  (evil-define-key 'normal elfeed-search-mode-map
+    (kbd "J") 'elfeed-goodies/split-show-next
+    (kbd "K") 'elfeed-goodies/split-show-prev))
+;; copy elfeed link
+(with-eval-after-load 'evil-leader
+  (evil-leader/set-key "e y" #'elfeed-show-yank))
 ;; elfeed-youtube setup
 (use-package! elfeed-tube
   ;;  :demand t    ;; Check: If the commented out feature is hamporing the feature in any way
