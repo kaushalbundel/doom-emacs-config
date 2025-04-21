@@ -55,4 +55,4 @@
 (package! mpv)
 (package! ox-hugo)
 (package! modus-themes)
-(package! obsidian)
+(package! org-modern)

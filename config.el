@@ -177,9 +177,9 @@
                  :kill-buffer t
                  :jump-to-captured t)))
 
-;;setting denote daily journal
-(require 'denote-journal-extras)
-(setq denote-journal-extras-title-format 'day-date-month-year)
+;;setting denote daily journal (the package has been discontinued)
+;; (require 'denote-journal-extras)
+;; (setq denote-journal-extras-title-format 'day-date-month-year)
 
 ;; Denote specific keybindings
 (map! :leader "n D" #'denote-link-or-create)  ;; Create denote buffer if not already created
@@ -290,34 +290,6 @@
 
 ;;consult
 (map! :leader "b a" #'consult-buffer)
-
-;;obsidian (TODO: Change keybinding)
-(use-package! obsidian
-  :ensure t
-  :demand t
-  :config
-  (obsidian-specify-path "~/Insync/kaushalbundel@outlook.com/OneDrive/09-Notes/Notes/")
-  (global-obsidian-mode t)
-  :custom
-  ;; This directory will be used for `obsidian-capture' if set.
-  (obsidian-inbox-directory "~/Insync/kaushalbundel@outlook.com/OneDrive/09-Notes/Notes/")
-  ;; Create missing files in inbox? - when clicking on a wiki link
-  ;; t: in inbox, nil: next to the file with the link
-  ;; default: t
-                                        ;(obsidian-wiki-link-create-file-in-inbox nil)
-  ;; The directory for daily notes (file name is YYYY-MM-DD.md)
-  (obsidian-daily-notes-directory "Daily Notes")
-  ;; Directory of note templates, unset (nil) by default
-  (obsidian-templates-directory "Templates")
-  ;; Daily Note template name - requires a template directory. Default: Daily Note Template.md
-                                        ;(obsidian-daily-note-template "Daily Note Template.md")
-  :bind (:map obsidian-mode-map
-              ;; Replace C-c C-o with Obsidian.el's implementation. It's ok to use another key binding.
-              ("C-c C-o" . obsidian-follow-link-at-point)
-              ;; Jump to backlinks
-              ("C-c C-b" . obsidian-backlink-jump)
-              ;; If you prefer you can use `obsidian-insert-link'
-              ("C-c C-l" . obsidian-insert-wikilink)))
 
 ;; Writeroom  mode keybinding
 (map! "<f12>" #'writeroom-mode)
