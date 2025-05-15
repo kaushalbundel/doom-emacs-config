@@ -56,3 +56,5 @@
 (package! ox-hugo)
 (package! modus-themes)
 (package! org-modern)
+(package! consult-denote)
+(package! spacious-padding)

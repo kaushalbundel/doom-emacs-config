@@ -103,14 +103,24 @@
 
 (setq browse-url-browser-function 'eww-browse-url)
 
+(use-package! elfeed
+  :config
+  (setq elfeed-show-entry-delete 'elfeed-goodies/delete-pane
+        elfeed-show-entry-switch 'elfeed-goodies/switch-pane))
+
 ;; Org elfeed
 (setq rmh-elfeed-org-files '("~/.config/doom/elfeed.org"))
+
 ;; elfeed update when search doom starts
 (add-hook! 'elfeed-search-mode-hook #'elfeed-update)
+
 (use-package! elfeed-goodies
   :config
   (elfeed-goodies/setup)
-  (setq elfeed-goodies/entry-pane-size 0.9))
+  (setq elfeed-goodies/entry-pane-size 0.85
+        elfeed-goodies/entry-pane-position 'bottom
+        elfeed-goodies/show-mode-padding 5))
+
 ;; changing feed using evil keybindings
 (with-eval-after-load 'evil
   (evil-define-key 'normal elfeed-show-mode-map
@@ -122,6 +132,7 @@
 ;; copy elfeed link
 (with-eval-after-load 'evil-leader
   (evil-leader/set-key "e y" #'elfeed-show-yank))
+
 ;; elfeed-youtube setup
 (use-package! elfeed-tube
   ;;  :demand t    ;; Check: If the commented out feature is hamporing the feature in any way
@@ -142,8 +153,6 @@
   :bind (:map elfeed-show-mode-map
               ("C-c C-f" . elfeed-tube-mpv-follow-mode)
               ("C-c C-w" . elfeed-tube-mpv-where)))
-
-
 
 ;; Org Mode
 ;; Org agenda view (Goals-Check the day agenda or the week's agenda)
@@ -184,7 +193,12 @@
 ;; (setq denote-journal-extras-title-format 'day-date-month-year)
 
 ;; Denote specific keybindings
-(map! :leader "n D" #'denote-link-or-create)  ;; Create denote buffer if not already created
+(map! :leader "d k" #'denote
+      :leader "d z" #'denote-link-or-create)  ;; Create denote buffer if not already created
+
+;; consult-denote for better note navigation
+(map! :leader "d f" #'consult-denote-find
+      :leader "d g" #'consult-denote-grep)
 
 ;; capture keybindings
 (map! "C-c C-w" #'osx-dictionary-search-input
@@ -193,16 +207,15 @@
 ;; ;; Dictionary setup
 (setq ispell-dictionary "en")
 
-(defun my-auth (key)
-  (with-temp-buffer
-    (insert-file-contents-literally "~/.my-auth")
-    (alist-get key (read (current-buffer)))))
+;; (defun my-auth (key)
+;;   (with-temp-buffer
+;;     (insert-file-contents-literally "~/.my-auth")
 
 ;;gptel config
-(use-package! gptel
-  :config
-  (setq! gptel-api-key (my-auth 'key1)))
-(map! "<f1>" #'gptel-send)
+;; (use-package! gptel
+;;   :config
+;;   (setq! gptel-api-key (my-auth 'key1)))
+;; (map! "<f1>" #'gptel-send)
 
 ;;eww config
 (setq! eww-auto-rename-buffer 'title)
@@ -211,38 +224,39 @@
 (setq mpv-start-timeout 5)
 
 ;; configuring python dap mode(debugging)
-(after! dap-mode
-  (setq dap-python-debugger 'debugpy))
-(map! :map dap-mode-map
-      :leader
-      :prefix ("d" . "dap")
-      ;; basics
-      :desc "dap next"          "n" #'dap-next
-      :desc "dap step in"       "i" #'dap-step-in
-      :desc "dap step out"      "o" #'dap-step-out
-      :desc "dap continue"      "c" #'dap-continue
-      :desc "dap hydra"         "h" #'dap-hydra
-      :desc "dap debug restart" "r" #'dap-debug-restart
-      :desc "dap debug"         "s" #'dap-debug
+;; TODO: Debugging to be done 
+;; (after! dap-mode
+;;   (setq dap-python-debugger 'debugpy))
+;; (map! :map dap-mode-map
+;;       :leader
+;;       :prefix ("d" . "dap")
+;;       ;; basics
+;;       :desc "dap next"          "n" #'dap-next
+;;       :desc "dap step in"       "i" #'dap-step-in
+;;       :desc "dap step out"      "o" #'dap-step-out
+;;       :desc "dap continue"      "c" #'dap-continue
+;;       :desc "dap hydra"         "h" #'dap-hydra
+;;       :desc "dap debug restart" "r" #'dap-debug-restart
+;;       :desc "dap debug"         "s" #'dap-debug
 
-      ;; debug
-      :prefix ("dd" . "Debug")
-      :desc "dap debug recent"  "r" #'dap-debug-recent
-      :desc "dap debug last"    "l" #'dap-debug-last
+;;       ;; debug
+;;       :prefix ("dd" . "Debug")
+;;       :desc "dap debug recent"  "r" #'dap-debug-recent
+;;       :desc "dap debug last"    "l" #'dap-debug-last
 
-      ;; eval
-      :prefix ("de" . "Eval")
-      :desc "eval"                "e" #'dap-eval
-      :desc "eval region"         "r" #'dap-eval-region
-      :desc "eval thing at point" "s" #'dap-eval-thing-at-point
-      :desc "add expression"      "a" #'dap-ui-expressions-add
-      :desc "remove expression"   "d" #'dap-ui-expressions-remove
+;;       ;; eval
+;;       :prefix ("de" . "Eval")
+;;       :desc "eval"                "e" #'dap-eval
+;;       :desc "eval region"         "r" #'dap-eval-region
+;;       :desc "eval thing at point" "s" #'dap-eval-thing-at-point
+;;       :desc "add expression"      "a" #'dap-ui-expressions-add
+;;       :desc "remove expression"   "d" #'dap-ui-expressions-remove
 
-      :prefix ("db" . "Breakpoint")
-      :desc "dap breakpoint toggle"      "b" #'dap-breakpoint-toggle
-      :desc "dap breakpoint condition"   "c" #'dap-breakpoint-condition
-      :desc "dap breakpoint hit count"   "h" #'dap-breakpoint-hit-condition
-      :desc "dap breakpoint log message" "l" #'dap-breakpoint-log-message)
+;;       :prefix ("db" . "Breakpoint")
+;;       :desc "dap breakpoint toggle"      "b" #'dap-breakpoint-toggle
+;;       :desc "dap breakpoint condition"   "c" #'dap-breakpoint-condition
+;;       :desc "dap breakpoint hit count"   "h" #'dap-breakpoint-hit-condition
+;;       :desc "dap breakpoint log message" "l" #'dap-breakpoint-log-message)
 
 
 ;;avy-configuration
@@ -299,3 +313,15 @@
 ;; lsp shortcuts
 (map! :leader "c g" #'lsp-goto-type-definition) ;; get the documentation
 (map! :leader "c p" #'lsp-describe-thing-at-point) ;;get the entire class defintion in a popup buffer
+
+;; spacious-padding config
+(use-package! spacious-padding
+  :config
+  (setq spacious-padding-widths
+        '( :internal-border-width 15
+           :header-line-width 4
+           :mode-line-width 2
+           :tab-width 2
+           :right-divider-width 24
+           :scroll-bar-width 8))
+  (spacious-padding-mode 1))
