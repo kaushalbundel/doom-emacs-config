@@ -22,7 +22,7 @@
 ;; accept. For example:
 ;;
 
-(setq doom-font (font-spec :family "JetBrains Mono" :size 11 :weight 'Regular)
+(setq doom-font (font-spec :family "JetBrains Mono" :size 12 :weight 'Regular)
       doom-variable-pitch-font (font-spec :family "Iosevka Comfy Motion Fixed" :size 13 :weight 'Regular))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
@@ -129,9 +129,9 @@
   (evil-define-key 'normal elfeed-search-mode-map
     (kbd "J") 'elfeed-goodies/split-show-next
     (kbd "K") 'elfeed-goodies/split-show-prev))
+
 ;; copy elfeed link
-(with-eval-after-load 'evil-leader
-  (evil-leader/set-key "e y" #'elfeed-show-yank))
+(map! :leader "e y" #'elfeed-show-yank)
 
 ;; elfeed-youtube setup
 (use-package! elfeed-tube
