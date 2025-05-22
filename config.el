@@ -325,3 +325,9 @@
            :right-divider-width 24
            :scroll-bar-width 8))
   (spacious-padding-mode 1))
+
+;; for better reading experience
+(use-package! olivetti
+  :defer 10
+  :custom
+  (olivetti-body-width 130))

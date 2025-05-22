@@ -58,3 +58,4 @@
 (package! org-modern)
 (package! consult-denote)
 (package! spacious-padding)
+(package! olivetti)
