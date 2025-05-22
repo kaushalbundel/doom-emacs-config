@@ -331,3 +331,7 @@
   :defer 10
   :custom
   (olivetti-body-width 130))
+
+;; disabling auto format in web mode
+;; The issue is with the formatting of django templates which on format become distorted
+(add-to-list '+format-on-save-disabled-modes 'web-mode)
