@@ -23,7 +23,7 @@
 ;;
 
 (setq doom-font (font-spec :family "JetBrains Mono" :size 12 :weight 'Regular)
-      doom-variable-pitch-font (font-spec :family "Iosevka Comfy Motion Fixed" :size 13 :weight 'Regular))
+      doom-variable-pitch-font (font-spec :family "IosevkaTermSlab Nerd Font Mono" :size 13 :weight 'Regular))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -333,8 +333,11 @@
 ;; The issue is with the formatting of django templates which on format become distorted
 (add-to-list '+format-on-save-disabled-modes 'web-mode)
 
+
+;; Writeroom  mode keybinding
+(map! "<f12>" #'writeroom-mode)
 ;; writeroom-mode
-;; Setup writeroom width and appearance
+;; Setup writeroom width and appearance (https://joshblais.com/posts/my-literate-doom-emacs-config/)
 (after! writeroom-mode
   ;; Set width for centered text
   (setq writeroom-width 40)
@@ -358,7 +361,10 @@
             (hl-line-mode -1)                    ;; Disable current line highlighting
             (setq left-margin-width 0)           ;; Let writeroom handle margins
             (setq right-margin-width 0)
-            (text-scale-set 1)                   ;; Slightly increase text size
+            ;; (text-scale-set -2)                   ;; Slightly increase text size
+            (setq-local my-writeroom-face-cookie
+                        (face-remap-add-relative 'default :height 0.9)) ;; Adjust this value
+            (variable-pitch-mode 1)
 
             ;; Improve vertical centering
             (when (bound-and-true-p visual-fill-column-mode)
@@ -383,6 +389,8 @@
           (setq cursor-type 'box)              ;; Restore default cursor
           (hl-line-mode +1)                    ;; Restore line highlighting
           (text-scale-set 0)                   ;; Restore normal text size
+          (when (bound-and-true-p my-writeroom-face-cookie)
+            (face-remap-remove-relative my-writeroom-face-cookie))
           (when (bound-and-true-p visual-fill-column-mode)
             (visual-fill-column-mode -1))))))  ;; Disable visual fill column mode
 
@@ -400,5 +408,3 @@
 
   ;; Set frame transparency
   (setq writeroom-alpha 0.95))
-;; Writeroom  mode keybinding
-(map! "<f12>" #'writeroom-mode)
