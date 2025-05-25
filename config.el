@@ -307,9 +307,6 @@
 ;;consult
 (map! :leader "b a" #'consult-buffer)
 
-;; Writeroom  mode keybinding
-(map! "<f12>" #'writeroom-mode)
-
 ;; lsp shortcuts
 (map! :leader "c g" #'lsp-goto-type-definition) ;; get the documentation
 (map! :leader "c p" #'lsp-describe-thing-at-point) ;;get the entire class defintion in a popup buffer
@@ -335,3 +332,73 @@
 ;; disabling auto format in web mode
 ;; The issue is with the formatting of django templates which on format become distorted
 (add-to-list '+format-on-save-disabled-modes 'web-mode)
+
+;; writeroom-mode
+;; Setup writeroom width and appearance
+(after! writeroom-mode
+  ;; Set width for centered text
+  (setq writeroom-width 40)
+
+  ;; Ensure the text is truly centered horizontally
+  (setq writeroom-fringes-outside-margins nil)
+  (setq writeroom-center-text t)
+
+  ;; Add vertical spacing for better readability
+  (setq writeroom-extra-line-spacing 4)  ;; Adds space between lines
+
+  ;; Improve vertical centering with visual-fill-column integration
+  (add-hook! 'writeroom-mode-hook
+    (defun my-writeroom-settings ()
+      "Configure various settings when entering/exiting writeroom-mode."
+      (if writeroom-mode
+          (progn
+            ;; When entering writeroom mode
+            (display-line-numbers-mode -1)       ;; Turn off line numbers
+            (setq cursor-type 'bar)              ;; Change cursor to a thin bar for writing
+            (hl-line-mode -1)                    ;; Disable current line highlighting
+            (setq left-margin-width 0)           ;; Let writeroom handle margins
+            (setq right-margin-width 0)
+            (text-scale-set 1)                   ;; Slightly increase text size
+
+            ;; Improve vertical centering
+            (when (bound-and-true-p visual-fill-column-mode)
+              (visual-fill-column-mode -1))      ;; Temporarily disable if active
+            (setq visual-fill-column-width 40)   ;; Match writeroom width
+            (setq visual-fill-column-center-text t)
+            (setq visual-fill-column-extra-text-width '(0 . 0))
+
+            ;; Set top/bottom margins to improve vertical centering
+            ;; These larger margins push content toward vertical center
+            (setq-local writeroom-top-margin-size
+                        (max 10 (/ (- (window-height) 40) 3)))
+            (setq-local writeroom-bottom-margin-size
+                        (max 10 (/ (- (window-height) 40) 3)))
+
+            ;; Enable visual-fill-column for better text placement
+            (visual-fill-column-mode 1))
+
+        ;; When exiting writeroom mode
+        (progn
+          (display-line-numbers-mode +1)       ;; Restore line numbers
+          (setq cursor-type 'box)              ;; Restore default cursor
+          (hl-line-mode +1)                    ;; Restore line highlighting
+          (text-scale-set 0)                   ;; Restore normal text size
+          (when (bound-and-true-p visual-fill-column-mode)
+            (visual-fill-column-mode -1))))))  ;; Disable visual fill column mode
+
+  ;; Hide modeline for a cleaner look
+  (setq writeroom-mode-line nil)
+
+  ;; Add additional global effects for writeroom
+  (setq writeroom-global-effects
+        '(writeroom-set-fullscreen        ;; Enables fullscreen
+          writeroom-set-alpha             ;; Adjusts frame transparency
+          writeroom-set-menu-bar-lines
+          writeroom-set-tool-bar-lines
+          writeroom-set-vertical-scroll-bars
+          writeroom-set-bottom-divider-width))
+
+  ;; Set frame transparency
+  (setq writeroom-alpha 0.95))
+;; Writeroom  mode keybinding
+(map! "<f12>" #'writeroom-mode)
