@@ -52,6 +52,7 @@
 *** https://matthewstrom.com/feed.xml
 ** Science :science:
 *** https://writings.stephenwolfram.com/feed/
+*** https://historyofscience.in/feed/
 ** Startup :World:
 *** https://lillianli.substack.com/feed  :china:
 ** Future :Futurism:
