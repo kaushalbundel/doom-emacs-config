@@ -22,7 +22,7 @@
 ;; accept. For example:
 ;;
 
-(setq doom-font (font-spec :family "JetBrains Mono" :size 12 :weight 'Regular)
+(setq doom-font (font-spec :family "IosevkaTerm Nerd Font Mono" :size 13 :weight 'Regular)
       doom-variable-pitch-font (font-spec :family "IosevkaTermSlab Nerd Font Mono" :size 13 :weight 'Regular))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
@@ -33,7 +33,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'modus-operandi-tinted)
+(setq doom-theme 'doom-dracula)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
